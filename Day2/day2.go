@@ -64,12 +64,11 @@ func pwChecker(entry string) bool {
 	e, _ := strconv.Atoi(strings.Split(c, "-")[1])
 
 	// Get the value of the letter validator
-	n := len(c)
-	l := string([]byte{entry[n+1]})
+	n := strings.Split(entry, " ")
+	l := strings.Replace(n[1], ":", "", -1)
 	
 	// Get the PW
-	a := []rune(entry)
-	pw := string(a[n+4:len(entry)-1])
+	pw := n[2]
 
 	// Get the occurances of letter
 	ct := strings.Count(pw, l)
@@ -82,6 +81,6 @@ func pwChecker(entry string) bool {
 	} 
 	s := " | "
 	// Pass/Fail | letter | count | range | password
-	fmt.Println(state, s, l, s, fmt.Sprintf("%2v", ct), s, fmt.Sprintf("%5v", c), s, fmt.Sprintf("%20v", pw))
+	fmt.Println(state, s, l, s, fmt.Sprintf("%2v", ct), s, fmt.Sprintf("%5v", c), s, fmt.Sprintf("%20v", pw), s)
 	return v
 }
