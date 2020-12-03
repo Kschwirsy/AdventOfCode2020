@@ -42,8 +42,10 @@ func main() {
 	
 	fmt.Println("------------------------------")
 	fmt.Println("------------------------------")
-	fmt.Println("Pass:", p)
-	fmt.Println("Fail", f)
+	fmt.Printf("There are %s valid passwords \n", p)
+	fmt.Printf("There are %s invalid passwords \n", f)
+	fmt.Println("------------------------------")
+	fmt.Println("------------------------------")
 }
 	
 func check(e error) {
@@ -52,7 +54,7 @@ func check(e error) {
     }
 }
 
-// Return true if password passes validation
+// Return true if password PASSES validation
 func pwChecker(entry string) bool {
 	r, _ := regexp.Compile("\\d+\\-\\d+")
 	
@@ -72,15 +74,14 @@ func pwChecker(entry string) bool {
 	// Get the occurances of letter
 	ct := strings.Count(pw, l)
 
-	v := (ct > b && ct < e)
-
-	fmt.Println("--------------")
-	fmt.Println("Input:", entry)
-	fmt.Println("Low/High:", c)
-	fmt.Println("Letter:", l)
-	fmt.Println("Password:", pw)
-	fmt.Println("Occurences:", ct)
-	fmt.Println("Valid:", v)
-	
+	// Determine if password is valid
+	v := (ct >= b && ct <= e)
+	state := fmt.Sprintf("%6v", "Failed")
+	if(v) {
+		state = fmt.Sprintf("%6v", "Valid")
+	} 
+	s := " | "
+	// Pass/Fail | letter | count | range | password
+	fmt.Println(state, s, l, s, fmt.Sprintf("%2v", ct), s, fmt.Sprintf("%5v", c), s, fmt.Sprintf("%20v", pw))
 	return v
 }
