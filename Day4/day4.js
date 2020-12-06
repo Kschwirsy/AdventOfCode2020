@@ -18,6 +18,8 @@ ID.prototype.getHcl = function(){console.log(this.hcl)}
 ID.prototype.getEcl = function(){console.log(this.ecl)}
 ID.prototype.getPid = function(){console.log(this.pid)}
 ID.prototype.getCid = function(){console.log(this.cid)}
+
+// Does a validation of all the rules
 ID.prototype.isValidId = function(){
     
     if (!this.byr) {return false} 
@@ -59,6 +61,9 @@ ID.prototype.isValidId = function(){
     return true
     
 }
+
+// Does a print of all the values against their validation rules
+// This was definitely was not neccessary, made for some nice formatiing output though
 ID.prototype.printValidation = function(){
     
     if (!this.byr) {console.log("empty byr")} 
@@ -113,6 +118,7 @@ ID.prototype.printValidation = function(){
     return 
 }
 
+// Print out each ID info with validation and total success
 function PrintIdInfo(id, validIdCt) {
     console.log("--------------------------------------");
     console.log(id);
@@ -120,16 +126,13 @@ function PrintIdInfo(id, validIdCt) {
     console.log("This passport is", id.isValidId() ? "VALID." : "INVALID.", "That's a total of:", validIdCt, "valid ones.")
 }
 
+// Read in input file
 var lineReader = require('readline').createInterface({
     input: require('fs').createReadStream('input.txt')
 });
 
 var id = new ID();
-var idList = [];
 var validIdCt = 0
-
-var count = 0
-
 lineReader.on('line', function (line) {
     if(line) {
         var lineElements = line.split(" ")
