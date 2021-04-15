@@ -173,5 +173,5 @@ lineReader.on('line', function (line) {
 }).on('close', function(){
     if(id.isValidId()){validIdCt++}
     PrintIdInfo(id, validIdCt)    
-    console.log("--------------------------------------");
+    console.log("---------------------------------------------");
 });
